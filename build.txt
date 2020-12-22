@@ -1,3 +1,3 @@
-displayName = Placeholder
+displayName = Secure. Modify. Protect.
 author = convicted tomatophile (Stevie), RighteousRyan
-version = 0.1
+version = 0.1.0.0
