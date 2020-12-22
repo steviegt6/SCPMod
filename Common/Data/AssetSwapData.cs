@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using SCPMod.Common.DataInterfaces;
+using SCPMod.Common.Handlers;
 using System.Reflection;
 
-namespace SCPMod.Common.DataStructs
+namespace SCPMod.Common.Data
 {
     public struct AssetSwapData : ILoadable
     {
@@ -12,7 +13,7 @@ namespace SCPMod.Common.DataStructs
 
         public Texture2D ReplacementAsset { get; }
 
-        public AssetSwapData(FieldInfo vanillaAssetField, Texture2D replacementAsset)
+        private AssetSwapData(FieldInfo vanillaAssetField, Texture2D replacementAsset)
         {
             VanillaAssetField = vanillaAssetField;
             ReplacementAsset = replacementAsset;
@@ -22,5 +23,7 @@ namespace SCPMod.Common.DataStructs
         public void Load() => VanillaAssetField.SetValue(null, ReplacementAsset);
 
         public void Unload() => VanillaAssetField.SetValue(null, OrigVanillaAsset);
+
+        public static void AddAssetSwap(string key, FieldInfo fieldInfo, Texture2D texture) => AssetHandler.AssetSwaps.Add(key, new AssetSwapData(fieldInfo, texture));
     }
 }

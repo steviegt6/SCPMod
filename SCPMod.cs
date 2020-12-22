@@ -26,11 +26,13 @@ namespace SCPMod
         public override void Load()
         {
             AssetHandler.LoadAssets();
+            ILHandler.LoadILEdits();
         }
 
         public override void Unload()
         {
             AssetHandler.UnloadAssets();
+            ILHandler.UnloadILEdits();
             UnloadStaticFields();
         }
 
